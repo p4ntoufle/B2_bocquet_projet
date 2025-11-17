@@ -15,8 +15,13 @@
         <ul>
             @foreach($voitures as $voiture)
                 <li>
-                    <a href="{{route('voiture.show', $voiture->id)}}"> {{$voiture->plaque}} </a>
-                    {{\Illuminate\Support\Str::limit($voiture->modele, 4)}}
+                    <a href="{{route('voiture.show', $voiture->id)}}">{{$voiture->modele}} </a>
+                    {{\Illuminate\Support\Str::limit($voiture->plaque, 4)}}
+                    <form action="{{route('voiture.destroy', $voiture->id)}}" method="post" style="display:inline">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" onclick="return confirm('Supprimer cette voiture?')">Supprimer </button>
+                    </form>
                 </li>
             @endforeach
         </ul>

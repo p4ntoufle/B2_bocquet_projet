@@ -12,6 +12,8 @@ Route::get('/index', function () {
 });
 
 Route::get('/', [VoitureController::class, 'AfficherVoiture']);
-Route::get('/voiture', [VoitureController::class, 'index']);
+Route::get('/voiture', [VoitureController::class, 'index'])->name('voiture.index');
 
 Route::get('/voitures/{id}', [VoitureController::class, 'show'])->name('voiture.show');
+
+Route::delete('/voitures/{id}', [VoitureController::class, 'destroy'])->name('voiture.destroy');

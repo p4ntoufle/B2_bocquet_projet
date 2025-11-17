@@ -20,4 +20,10 @@ class VoitureController extends Controller
         $voiture = Voiture::findOrFail($id);
         return view('voiture.show', compact('voiture'));
     }
+
+    public function destroy($id) {
+        $voiture = Voiture::findOrFail($id);
+        $voiture->delete();
+        return redirect()->route('voiture.index')->with("success", "article supprimé");
+    }
 }
