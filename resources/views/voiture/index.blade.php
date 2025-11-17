@@ -9,12 +9,17 @@
 </head>
 <body>
     <h1>Les voitures</h1>
-    @foreach($voitures as $voiture)
-        <div>
-            <h2> {{$voiture->modele}} {{$voiture->marque}} </h2>
-            <p> {{$voiture->plaque}} </p>
-            <p> {{$voiture->kilometrage}} </p>
-        </div>
-    @endforeach
+    @if($voitures->isEmpty())
+        <p>Pas de véhicules trouvés</p>
+    @else
+        <ul>
+            @foreach($voitures as $voiture)
+                <li>
+                    <a href="{{route('voiture.show', $voiture->id)}}"> {{$voiture->plaque}} </a>
+                    {{\Illuminate\Support\Str::limit($voiture->modele, 4)}}
+                </li>
+            @endforeach
+        </ul>
+    @endif
 </body>
 </html>
